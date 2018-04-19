@@ -5,7 +5,6 @@ import os from "os";
 import Koa from "koa";
 import logger from "koa-pino-logger";
 // import redis from "redis";
-import si from "systeminformation";
 
 const app = new Koa();
 // const db = redis.createClient();

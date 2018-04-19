@@ -1,7 +1,7 @@
 require("@babel/register")({
   presets: [
     ["@babel/preset-env", {
-      targets: { node: "current" },
+      targets: { node: "8.11" },
       useBuiltIns: "entry",
       // debug: true
     }]

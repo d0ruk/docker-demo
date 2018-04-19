@@ -1,8 +1,9 @@
 {
   "name": "@doruk/docker-demo",
   "scripts": {
-    "start": "node . | pino >> my.log",
-    "dev": "nodemon --inspect=0.0.0.0:9229 . | pino"
+    "start": "node src | pino >> my.log",
+    "dev": "nodemon src | pino",
+    "inspect": "nodemon --inspect=0.0.0.0:9229 src | pino"
   },
   "keywords": [
     "docker",
@@ -11,6 +12,10 @@
     "koa",
     "stack"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/d0ruk/docker-demo.git"
+  },
   "author": "Doruk Kutlu",
   "license": "MIT",
   "dependencies": {

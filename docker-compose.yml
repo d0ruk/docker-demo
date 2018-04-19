@@ -2,6 +2,7 @@ version: "3"
 services:
   app:
     image: ${DOCKER_USER}/docker_demo:latest
+    container_name: prod.docker_demo
     command: "npm start"
     deploy:
       replicas: 5
@@ -13,3 +14,5 @@ services:
         condition: on-failure
     ports:
       - "8000:3001"
+    environment:
+      NODE_ENV: "production"
