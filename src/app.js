@@ -26,8 +26,7 @@ app.use(async (ctx, next) => {
 });
 
 app.use(async (ctx, next) => {
-  ctx.body = JSON.stringify(await os.hostname(), null, 2);
-});
+  ctx.body = `host: ${await os.hostname()}\n`;  });
 
 if (!module.parent) {
   const port = process.env.PORT || 11111;
