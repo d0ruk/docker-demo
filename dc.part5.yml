@@ -1,0 +1,35 @@
+version: "3"
+services:
+  app:
+    networks:
+      - mynetwork
+
+  visualizer:
+    image: dockersamples/visualizer:stable
+    container_name: viz.docker_demo
+    ports:
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+    networks:
+      - mynetwork
+
+  # redis:
+  #   image: redis
+  #   container_name: redis.docker_demo
+  #   ports:
+  #     - "6379:6379"
+  #   volumes:
+  #     - /home/docker/data:/data
+  #   deploy:
+  #     placement:
+  #         constraints: [node.role == manager]
+  #   command: redis-server --appendonly yes
+  #   networks:
+  #     - mynetwork
+
+networks:
+  mynetwork:
