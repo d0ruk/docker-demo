@@ -8,7 +8,7 @@
 > docker build -t docker_demo:build .
 ```
 
-####  Run the **docker_demo:build** image in the **get_started** container;
+####  Run the *docker_demo:build* image in the *get_started* container;
 
 ```sh
 > docker run --name get_started -p 8000:3001 docker_demo:build npm run dev
@@ -70,7 +70,7 @@ If your containers are shutdown with log message "Killed", or take too long "Pre
 
 ## Part 4: Swarms
 
-*Docker Machine development has stopped and is now in [maintenance mode](https://github.com/docker/machine/issues/4537)*.
+*Docker Machine development has stopped. Project is now in [maintenance mode](https://github.com/docker/machine/issues/4537)*.
 
 > Here in [part 4](https://docs.docker.com/get-started/part4/#introduction), you deploy this application onto a cluster, running it on multiple machines. Multi-container, multi-machine applications are made possible by joining multiple machines into a “Dockerized” cluster called a swarm.
 
@@ -219,7 +219,7 @@ Suggested deployment method for your Docker containers is a managed k8s service;
 ### Docker v18.03 docs
 
 ```sh
-> docker run -ti -p 4000:4000 docs/docker.github.io:latest
+> docker run -ti -p 4000:4000 docs/docker.github.io:latest # >2GB
 ```
 
 ### links
