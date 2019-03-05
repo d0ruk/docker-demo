@@ -2,9 +2,10 @@
   "name": "docker-demo",
   "private": true,
   "scripts": {
-    "start": "node src",
-    "dev": "nodemon src",
-    "inspect": "nodemon --inspect=0.0.0.0:9229 src",
+    "start": "cross-env NODE_ENV=production node src",
+    "inspect": "cross-env NODE_ENV=development nodemon --inspect=0.0.0.0:9229 src",
+    "up": "docker-compose -f docker-compose.yml up",
+    "up:dev": "docker-compose up",
     "p5:up": "docker-compose -f docker-compose.yml -f dc.part5.yml up",
     "p5:dev": "docker-compose -f docker-compose.yml -f docker-compose.override.yml -f dc.part5.yml up",
     "test": "eslint src"
@@ -21,7 +22,7 @@
     "url": "git+https://github.com/d0ruk/docker-demo.git"
   },
   "engines": {
-    "node": ">8.10.0 || >=9.10.0"
+    "node": "^8 || ^10"
   },
   "author": "Doruk Kutlu",
   "license": "MIT",
@@ -39,6 +40,7 @@
     "@babel/core": "^7.0.0-rc.0",
     "@babel/preset-env": "^7.0.0-rc.0",
     "babel-eslint": "^8.2.6",
+    "cross-env": "^5.2.0",
     "eslint": "^5.4.0",
     "eslint-plugin-node": "^7.0.1",
     "nodemon": "^1.18.3"

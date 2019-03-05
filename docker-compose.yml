@@ -14,5 +14,3 @@ services:
         condition: on-failure
     ports:
       - "8000:3001"
-    environment:
-      NODE_ENV: "production"

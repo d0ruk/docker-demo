@@ -9,5 +9,3 @@ services:
       - "9229:9229"
     volumes:
       - ./src:/home/node/app/src
-    environment:
-      NODE_ENV: "development"
