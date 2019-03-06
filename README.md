@@ -39,15 +39,20 @@ To see the log output of a container in detached mode;
 > docker logs -f get_started
 ```
 
-####  Push the image
+#### Push the image
 
-You need to have registered with Docker Hub, completed ```docker login```, and set the DOCKER_USER env var.
+Since the deploy procedure in this walkthrough needs an image to pull, you will push the one you built to [Docker Hub](https://hub.docker.com/signup). You need to register, and  do [docker login](https://docs.docker.com/engine/reference/commandline/login/).
+
+Also, you need to edit the `.env` file with your Docker user, and the tag you will use when pushing the image.
 
 ```sh
-> export DOCKER_USER=<your-docker-hub-username>
-> docker tag docker_demo:build ${DOCKER_USER}/docker_demo:latest
-> docker push ${DOCKER_USER}/docker_demo:latest
+> cp env.sample .env
+> export $(cat .env) # load .env variables into shell
+> docker tag docker_demo:build ${DOCKER_USER}/docker_demo:${TAG}
+> docker push ${DOCKER_USER}/docker_demo:${TAG}
 ```
+
+When you need to build multi-architecture (amd64, arm32v6) images, you need different tags per arch; i.e. :amd64-latest, :arm32v6-latest. This way of tagging is not best-practice. For easier management of images across architectures, [use manifests](https://medium.com/@mauridb/docker-multi-architecture-images-365a44c26be6).
 
 ## Part 3: Services
 

@@ -2,7 +2,7 @@ version: "3"
 services:
   app:
     build: .
-    container_name: dev.api.docker_demo
+    container_name: dev.docker_demo
     image: docker_demo:dev
     command: "npm run inspect"
     ports:
