@@ -1,4 +1,4 @@
-FROM node:carbon-slim
+FROM arm32v6/node:lts-alpine
 
 RUN mkdir -p /home/node/app/src
 COPY package.json /home/node/app/
