@@ -22,7 +22,7 @@
     "url": "git+https://github.com/d0ruk/docker-demo.git"
   },
   "engines": {
-    "node": "^8 || ^10"
+    "node": "^10 || ^12"
   },
   "author": "Doruk Kutlu",
   "license": "MIT",
