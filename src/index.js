@@ -3,9 +3,10 @@ require("@babel/register")({
     [
       "@babel/preset-env",
       {
+        corejs: 3,
+        // debug: true
         targets: { node: "8.11" },
         useBuiltIns: "entry",
-        // debug: true
       },
     ],
   ],

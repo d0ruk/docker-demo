@@ -1,5 +1,4 @@
-import "@babel/polyfill";
-
+import "core-js/stable";
 import os from "os";
 import path from "path";
 

@@ -27,9 +27,9 @@
   "author": "Doruk Kutlu",
   "license": "MIT",
   "dependencies": {
-    "@babel/polyfill": "^7.0.0-rc.0",
     "@babel/register": "^7.0.0-rc.0",
     "bluebird": "^3.5.1",
+    "core-js": "3",
     "koa": "^2.5.2",
     "koa-mount": "^3.0.0",
     "koa-pino-logger": "^2.1.3",
