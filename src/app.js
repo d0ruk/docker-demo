@@ -70,7 +70,7 @@ app.use(ctx => {
 });
 
 if (!module.parent) {
-  const port = process.env.PORT || 11111;
+  const port = process.env.PORT || 8081;
   app.listen(port);
   console.log(`Listening on ${port}`); // eslint-disable-line
 }

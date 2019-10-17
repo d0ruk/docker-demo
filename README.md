@@ -2,9 +2,16 @@
 
 **There is also an [arm32v6](https://github.com/d0ruk/docker-demo/commits/arm32v6) branch.**
 
+#### Prepare
+
+```sh
+> cp env.sample .env
+> export $(cat .env) # load .env variables into shell
+```
+
 ## Part 2: Containers
 
-#### Build the image;
+#### Build the image
 
 Build the Dockerfile in the current directory, and tag the resulting image `docker_demo:build`.
 
@@ -12,17 +19,17 @@ Build the Dockerfile in the current directory, and tag the resulting image `dock
 > docker build -t docker_demo:build .
 ```
 
-Run the `docker_demo:build` image in the `get_started` container. Bind container's internal `3001` port to host machine's `8000` port, and run the `npm start` command.
+Run the `docker_demo:build` image in the `get_started` container. Bind container's internal `${PORT}` to host machine's `8000` port, and execute the `npm start` command.
 
 ```sh
-> docker run --name get_started -p 8000:3001 docker_demo:build npm start
+> docker run --name get_started -p 8000:${PORT} docker_demo:build npm start
 > curl -i http://localhost:8000
 ```
 
 If you want the container to work in the background, you need to run the image in detached mode;
 
 ```sh
-> docker run -d --name get_started -p 8000:3001 docker_demo:build npm start
+> docker run -d --name get_started -p 8000:${PORT} docker_demo:build npm start
 ```
 
 To stop the container,
@@ -57,8 +64,6 @@ Since the deploy procedure in this walkthrough needs an image to pull, you will 
 Also, you need to edit the `.env` file with your Docker Hub username, and the tag you will use when pushing the image.
 
 ```sh
-> cp env.sample .env
-> export $(cat .env) # load .env variables into shell
 > docker tag docker_demo:build ${DOCKER_USER}/docker_demo:${TAG}
 > docker push ${DOCKER_USER}/docker_demo:${TAG}
 ```

@@ -12,7 +12,7 @@ require("@babel/register")({
   ],
 });
 
-const port = process.env.PORT || 11111;
+const port = process.env.PORT || 8080;
 const app = require("./app.js").default;
 
 app.listen(port);
