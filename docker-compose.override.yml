@@ -8,4 +8,4 @@ services:
     ports:
       - "9229:9229"
     volumes:
-      - ./src:/home/node/app/src
+      - ./src:/usr/src/app/src

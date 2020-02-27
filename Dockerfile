@@ -1,11 +1,18 @@
-FROM node:12-alpine
+FROM node:lts as builder
 
-RUN mkdir -p /home/node/app/src
-WORKDIR /home/node/app
-COPY package.json .
-COPY src ./src
+WORKDIR /usr/src/app
 
-RUN npm i -g yarn
+COPY ./package.json .
+RUN curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 RUN yarn
 
-ENV PATH /home/node/app/src/node_modules/.bin:$PATH
+###############
+
+FROM node:12-alpine
+
+WORKDIR /usr/src/app
+
+COPY src ./src
+COPY --from=builder /usr/src/app .
+
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
