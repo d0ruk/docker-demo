@@ -1,11 +1,16 @@
-## This is (mostly) a walkthrough of the Docker [Get Started](https://docs.docker.com/get-started/) series.
+## This is (mostly) a walkthrough of the (old) Docker [Get Started](https://docs.docker.com/get-started/) series.
 
 **There is also an [arm32v6](https://github.com/d0ruk/docker-demo/commits/arm32v6) branch.**
 
 #### Prepare
 
 ```sh
-> cp env.sample .env
+> cp .env.sample .env
+```
+
+Edit the `.env` file with your Docker Hub username, port the app will listen on, and the tag you will use when pushing the image.
+
+```sh
 > export $(cat .env) # load .env variables into shell
 ```
 
@@ -22,46 +27,43 @@ Build the Dockerfile in the current directory, and tag the resulting image `dock
 Run the `docker_demo:build` image in the `get_started` container. Bind container's internal `${PORT}` to host machine's `8000` port, and execute the `npm start` command.
 
 ```sh
-> docker run --name get_started -p 8000:${PORT} docker_demo:build npm start
+> docker container run --name get_started -p 8000:${PORT} docker_demo:build npm start
 > curl -i http://localhost:8000
 ```
 
 If you want the container to work in the background, you need to run the image in detached mode;
 
 ```sh
-> docker run -d --name get_started -p 8000:${PORT} docker_demo:build npm start
+> docker container run -d --name get_started -p 8000:${PORT} docker_demo:build npm start
 ```
 
 To stop the container,
 
 ```sh
-> docker stop get_started
+> docker container stop get_started
 ```
 
 To restart it;
 
 ```sh
-> docker start get_started
+> docker container start get_started
 ```
 
 To run a new container with the same name, you need to remove the old one;
 
 ```sh
-> docker rm get_started
+> docker container rm get_started
 ```
-
 
 To see the log output of a container in detached mode;
 
 ```sh
-> docker logs -f get_started
+> docker container logs -f get_started
 ```
 
 #### Push the image
 
-Since the deploy procedure in this walkthrough needs an image to pull, you will push the one you built to [Docker Hub](https://hub.docker.com/signup). You need to register, and  do [docker login](https://docs.docker.com/engine/reference/commandline/login/).
-
-Also, you need to edit the `.env` file with your Docker Hub username, and the tag you will use when pushing the image.
+Since the deploy procedure in this walkthrough needs an image to pull, you will push the one you built to [Docker Hub](https://hub.docker.com/signup). You need to register, and do [docker login](https://docs.docker.com/engine/reference/commandline/login/).
 
 ```sh
 > docker tag docker_demo:build ${DOCKER_USER}/docker_demo:${TAG}
@@ -81,7 +83,8 @@ Note: `docker-compose.yml` references the image you upload to Docker Hub. Make s
 ```sh
 > docker swarm init
 > docker stack deploy -c docker-compose.yml some_app  # might take >30s
-> docker service ps some_app_app # 5 instances on one host machine
+> docker service ls
+> docker service ps some_app_app # 5 instances on one node
 > curl -i4 http://localhost:8000
 > docker stack rm some_app
 > docker swarm leave --force
@@ -204,9 +207,9 @@ volumes:
   - "/home/docker/data:/data"
 ```
 
-You are telling the redis container to mount its internal **/data** folder as the **/home/docker/data** folder **local** to the machine it's deployed on (myvm1).
+You are telling the redis container to mount its internal **/data** folder as the **/home/docker/data** folder in the machine it's deployed on (myvm1).
 
-If you didn't mount the **/data** folder, you would lose the redis data when the container powers down. This way, you _persist_ the data.
+If you didn't mount this internal folder, you would lose the redis data when the container powers down. This way, you *persist* the data.
 
 Create the **/data** folder on the local filesystem of the host machine;
 
