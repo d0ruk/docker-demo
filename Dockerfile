@@ -1,12 +1,18 @@
-FROM arm32v6/node:lts-alpine
+FROM arm32v6/node:lts as builder
 
-RUN mkdir -p /home/node/app/src
-COPY package.json /home/node/app/
-COPY src/ /home/node/app/src/
+WORKDIR /usr/src/app
 
-WORKDIR /home/node/app
-RUN npm i -g yarn
+COPY ./package.json .
+RUN curl --compressed -o- -L https://yarnpkg.com/install.sh | bash
 RUN yarn
 
-ENV PORT 3001
-ENV PATH /home/node/app/src/node_modules/.bin:$PATH
+###############
+
+FROM arm32v6/node:lts-alpine
+
+WORKDIR /usr/src/app
+
+COPY src ./src
+COPY --from=builder /usr/src/app .
+
+ENV PATH /usr/src/app/node_modules/.bin:$PATH
