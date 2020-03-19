@@ -3,15 +3,16 @@ require("@babel/register")({
     [
       "@babel/preset-env",
       {
+        corejs: 3,
+        // debug: true
         targets: { node: "8.11" },
         useBuiltIns: "entry",
-        // debug: true
       },
     ],
   ],
 });
 
-const port = process.env.PORT || 11111;
+const port = process.env.PORT || 8080;
 const app = require("./app.js").default;
 
 app.listen(port);
