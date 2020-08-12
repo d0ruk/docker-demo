@@ -7,7 +7,7 @@ import mount from "koa-mount";
 import getLogger from "koa-pino-logger";
 import redis from "redis";
 import { promisifyAll } from "bluebird";
-import RFS from "rotating-file-stream";
+import { createStream } from "rotating-file-stream";
 
 import { name } from "../package.json";
 import * as apps from "./mnt";
@@ -22,14 +22,14 @@ const HOSTNAME = os.hostname();
 const ONE_HOUR = 1000 * 60 * 60;
 const MAX_ATTEMPTS = 5 * isProd ? 100 : 1;
 
-const rfs = new RFS(`${name}_${HOSTNAME}.log`, {
+const stream = createStream(`${name}_${HOSTNAME}.log`, {
   // compress: "gzip",
   interval: "1d",
   maxSize: "100M",
   path: path.resolve("logs"),
   size: "10M",
 });
-const logger = getLogger({ stream: rfs });
+const logger = getLogger({ stream });
 const db = redis.
   createClient({
     host: "redis",
