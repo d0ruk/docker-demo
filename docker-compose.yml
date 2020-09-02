@@ -13,5 +13,6 @@ services:
           memory: 100M
       restart_policy:
         condition: on-failure
+    env_file: .env
     ports:
       - 8000:${PORT}
