@@ -10,9 +10,13 @@ RUN yarn
 
 FROM node:12-alpine
 
+RUN set -eux; \
+  apk add --no-cache tini
+
 WORKDIR /usr/src/app
 
 COPY src ./src
 COPY --from=builder /usr/src/app .
 
 ENV PATH /usr/src/app/node_modules/.bin:$PATH
+ENTRYPOINT ["/sbin/tini", "--"]

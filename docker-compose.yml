@@ -1,7 +1,7 @@
 version: "3.7"
+
 services:
   app:
-    init: true
     image: ${DOCKER_USER}/docker_demo:${TAG}
     container_name: prod.docker_demo
     command: "npm start"
