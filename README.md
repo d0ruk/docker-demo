@@ -235,21 +235,21 @@ Now, your app has access to a redis service;
 
 ## Part 6: Deploy
 
-Docker Cloud is now [discontinued](http://success.docker.com/article/cloud-migration). Read [this](https://forums.docker.com/t/what-is-the-point-of-the-new-beta-swarm-mode/29180/26), and [this](https://www.reddit.com/r/docker/comments/85w2vd/docker_cloud_is_shutting_down/) discussion for context.
+Docker Cloud is now [discontinued](http://success.docker.com/article/cloud-migration). You can read [this](https://www.reddit.com/r/docker/comments/85w2vd/docker_cloud_is_shutting_down/) for context.
 
-Suggested deployment method for your Docker containers is a managed k8s service; such as [GKE](https://cloud.google.com/kubernetes-engine/), [AKS](https://azure.microsoft.com/en-us/services/kubernetes-service/), or [EKS](https://aws.amazon.com/eks/).
+Suggested deployment method for your Docker containers is a managed k8s service; such as [GKE](https://cloud.google.com/kubernetes-engine/), [AKS](https://azure.microsoft.com/en-us/services/kubernetes-service/) or [EKS](https://aws.amazon.com/eks/).
 
 ---
 
-### Docker v18.03 docs
+### Official documentation
 
 ```sh
 > docker run -ti -p 4000:4000 docs/docker.github.io:latest # >2GB
 ```
 
-### links
+### Links
 
-- cheatsheets: [official](https://www.docker.com/sites/default/files/Docker_CheatSheet_08.09.2016_0.pdf), [this](https://github.com/wsargent/docker-cheat-sheet), and [this](https://gist.github.com/d0ruk/76539f25be9a3831e1f7cb2dc6031572)
+- cheatsheets: [official](https://docs.docker.com/get-started/docker_cheatsheet.pdf) & [this](https://github.com/wsargent/docker-cheat-sheet)
 
 - [awesome docker](https://github.com/veggiemonk/awesome-docker)
 
