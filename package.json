@@ -22,7 +22,7 @@
     "url": "git+https://github.com/d0ruk/docker-demo.git"
   },
   "engines": {
-    "node": "^10 || ^12"
+    "node": ">16"
   },
   "author": "Doruk Kutlu",
   "license": "MIT",
@@ -33,6 +33,7 @@
     "koa": "^2.11.0",
     "koa-mount": "^4.0.0",
     "koa-pino-logger": "^2.1.3",
+    "rc": "^1.2.8",
     "redis": "^3.0.2",
     "rotating-file-stream": "^2.0.2"
   },

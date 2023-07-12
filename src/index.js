@@ -11,9 +11,18 @@ require("@babel/register")({
     ],
   ],
 });
+const { name } = require("../package.json")
+const config = require("rc")(name, {
+  port: 8080,
+  redis_url: "",// "redis://localhost:6379/1",
+  isProd: process.env.NODE_ENV === "production"
+});
 
-const port = process.env.PORT || 8080;
+module.exports = {
+  config,
+}
+
 const app = require("./app.js").default;
-
-app.listen(port);
-console.log(`Listening on ${port}`); // eslint-disable-line
+const PORT = config.port
+app.listen(PORT);
+console.log(`Listening on ${PORT} in ${process.env.NODE_ENV}`); // eslint-disable-line
